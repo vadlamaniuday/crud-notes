@@ -50,9 +50,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-The API endpoints are documented in the Swagger UI, which can be accessed at `http://127.0.0.1:8000/swagger/`.
+The requirements are to be downloaded from requirements.txt files
 
-Note that this project is licensed under the MIT License. For any questions or issues, please open an issue on GitHub or contact the project maintainers directly.
 
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/10420557/2faede61-46c6-40d1-9f78-6e165f41b0ee/paste.txt
+Sources : 
+1. Django Docs : https://docs.djangoproject.com/en/4.2/
+2. DjangoRESTFramework : https://www.django-rest-framework.org/
