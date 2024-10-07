@@ -65,13 +65,15 @@ class CreateNoteView(APIView):
         serializer = NoteSerializer(data=request.data)
         # Check if the serializer is valid and then save the data with a success message
         if serializer.is_valid():
-            serializer.save()
+            # Save the note and get the saved instance
+            note = serializer.save()
             return Response(
-                {"message": "Note created successfully"}, status=status.HTTP_201_CREATED
+                {"message": f"Note created successfully."},
+                status=status.HTTP_201_CREATED
             )
         # Return error response with serializer errors
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class GetNoteView(APIView):
