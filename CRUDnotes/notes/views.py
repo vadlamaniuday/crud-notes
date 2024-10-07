@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view
+
 from .serializers import (
     UserRegistrationSerializer,
     UserLoginSerializer,
@@ -13,10 +13,10 @@ from .serializers import (
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from .models import Note
-from rest_framework import serializers
-from django.contrib.auth import login, authenticate
-from rest_framework.authtoken.views import ObtainAuthToken
 
+from django.contrib.auth import login, authenticate
+
+from django.utils import timezone
 
 class UserRegistrationView(APIView):
     # This code snippet defines a POST method that takes a request, validates the data using a serializer, saves the data if it's valid, and returns the appropriate response with status codes.
@@ -68,7 +68,7 @@ class CreateNoteView(APIView):
             # Save the note and get the saved instance
             note = serializer.save()
             return Response(
-                {"message": f"Note created successfully."},
+                {"message": f"Note created successfully. ID : {note.id}"},
                 status=status.HTTP_201_CREATED
             )
         # Return error response with serializer errors
@@ -156,9 +156,7 @@ class UpdateNoteView(APIView):
                     note.content = updated_content
                     note.versions.append(
                         {
-                            "timestamp": serializers.DateTimeField().to_representation(
-                                serializers.DateTimeField().get_current_time()
-                            ),
+                            "timestamp": timezone.now().isoformat(),  # Use timezone.now() directly
                             "edited_by": request.user.username,
                             "content_changes": updated_content,
                         }

@@ -15,7 +15,7 @@ urlpatterns = [
     path("notes/create/", CreateNoteView.as_view(), name="create-note"),
     path("notes/<int:id>/", GetNoteView.as_view(), name="get-note"),
     path("notes/share/", ShareNoteView.as_view(), name="share-note"),
-    path("notes/<int:id>/", UpdateNoteView.as_view(), name="update-note"),
+    path("notes/<int:id>/update", UpdateNoteView.as_view(), name="update-note"),
     path(
         "notes/version-history/<int:id>/",
         NoteVersionHistoryView.as_view(),
